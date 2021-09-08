@@ -35,6 +35,7 @@ public enum AuthenticationScheme {
 
     SSWS("com.okta.sdk.impl.http.authc.SswsAuthenticator"), //SSWS Authentication
     OAUTH2_PRIVATE_KEY("com.okta.sdk.impl.http.authc.OAuth2RequestAuthenticator"), //OAuth2
+    OAUTH2_HEADER_TOKEN("com.okta.sdk.impl.http.authc.OAuth2HeaderTokenRequestAuthenticator"), //OAuth2 Access Token in header
     NONE(DisabledAuthenticator.class);
 
     private final String requestAuthenticatorClassName;

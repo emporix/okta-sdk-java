@@ -25,6 +25,7 @@ public enum AuthorizationMode {
 
     SSWS("SSWS", AuthenticationScheme.SSWS), // SSWS
     PRIVATE_KEY("PrivateKey", AuthenticationScheme.OAUTH2_PRIVATE_KEY), // OAuth2
+    HEADER_TOKEN("HEADER_TOKEN", AuthenticationScheme.OAUTH2_HEADER_TOKEN), // OAuth2 Access Token in Header
     NONE("NONE", AuthenticationScheme.NONE); // None
 
     private final String label;
