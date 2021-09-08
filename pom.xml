@@ -14,7 +14,8 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -220,7 +221,7 @@
                 <version>1.0-rc6</version>
                 <optional>true</optional>
             </dependency>
-            
+
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
@@ -292,9 +293,9 @@
                         <trimStackTrace>false</trimStackTrace>
                         <reuseForks>true</reuseForks>
 
-<!--                         <forkCount>2C</forkCount>
-                        <parallel>classes</parallel>
-                        <threadCount>5</threadCount> -->
+                        <!--                         <forkCount>2C</forkCount>
+                                                <parallel>classes</parallel>
+                                                <threadCount>5</threadCount> -->
 
                     </configuration>
                 </plugin>
@@ -370,7 +371,8 @@
                         </oldVersion>
                         <parameter>
                             <onlyModified>true</onlyModified>
-                            <breakBuildOnBinaryIncompatibleModifications>true</breakBuildOnBinaryIncompatibleModifications>
+                            <breakBuildOnBinaryIncompatibleModifications>true
+                            </breakBuildOnBinaryIncompatibleModifications>
                             <breakBuildBasedOnSemanticVersioning>true</breakBuildBasedOnSemanticVersioning>
                             <postAnalysisScript>${root.dir}/src/japicmp/postAnalysisScript.groovy</postAnalysisScript>
                         </parameter>
@@ -399,7 +401,18 @@
                 <artifactId>nexus-staging-maven-plugin</artifactId>
                 <extensions>false</extensions>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.jasig.maven</groupId>
                 <artifactId>maven-notice-plugin</artifactId>
@@ -439,7 +452,9 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-jxr-plugin</artifactId>
                         <configuration>
-                            <sourcePath>${project.build.sourceDirectory};${root.dir}/api/target/generated-sources/swagger-codegen;${root.dir}/impl/target/generated-sources/swagger-codegen</sourcePath>
+                            <sourcePath>
+                                ${project.build.sourceDirectory};${root.dir}/api/target/generated-sources/swagger-codegen;${root.dir}/impl/target/generated-sources/swagger-codegen
+                            </sourcePath>
                             <excludes>**/com/okta/swagger/**</excludes>
                         </configuration>
                     </plugin>
