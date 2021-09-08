@@ -23,9 +23,9 @@
         <version>21</version>
     </parent>
 
-    <groupId>com.okta.sdk</groupId>
+    <groupId>com.emporix.sdk</groupId>
     <artifactId>okta-sdk-root</artifactId>
-    <version>5.0.1-SNAPSHOT</version>
+    <version>5.0.1</version>
     <packaging>pom</packaging>
 
     <name>Okta Java SDK</name>
@@ -41,6 +41,7 @@
         <jjwt.version>0.11.1</jjwt.version>
         <okta.sdk.previousVersion>5.0.0</okta.sdk.previousVersion>
         <okta.commons.version>1.2.6</okta.commons.version>
+        <maven-s3-wagon.version>1.2.1</maven-s3-wagon.version>
 
         <github.slug>okta/okta-sdk-java</github.slug>
     </properties>
@@ -57,6 +58,24 @@
         <module>coverage</module>
     </modules>
 
+    <distributionManagement>
+        <repository>
+            <id>repository.saas-ag.com</id>
+            <url>s3://repository.saas-ag.com/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>repository.saas-ag.com</id>
+            <url>s3://repository.saas-ag.com/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>repository.saas-ag.com</id>
+            <url>s3://repository.saas-ag.com/release</url>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
 
@@ -70,29 +89,29 @@
 
             <!-- Inter project dependencies -->
             <dependency>
-                <groupId>com.okta.sdk</groupId>
+                <groupId>com.emporix.sdk</groupId>
                 <artifactId>okta-sdk-api</artifactId>
-                <version>5.0.1-SNAPSHOT</version>
+                <version>5.0.1</version>
             </dependency>
             <dependency>
-                <groupId>com.okta.sdk</groupId>
+                <groupId>com.emporix.sdk</groupId>
                 <artifactId>okta-sdk-impl</artifactId>
-                <version>5.0.1-SNAPSHOT</version>
+                <version>5.0.1</version>
             </dependency>
             <dependency>
-                <groupId>com.okta.sdk</groupId>
+                <groupId>com.emporix.sdk</groupId>
                 <artifactId>okta-api-swagger-templates</artifactId>
-                <version>5.0.1-SNAPSHOT</version>
+                <version>5.0.1</version>
             </dependency>
             <dependency>
-                <groupId>com.okta.sdk</groupId>
+                <groupId>com.emporix.sdk</groupId>
                 <artifactId>okta-sdk-httpclient</artifactId>
-                <version>5.0.1-SNAPSHOT</version>
+                <version>5.0.1</version>
             </dependency>
             <dependency>
-                <groupId>com.okta.sdk</groupId>
+                <groupId>com.emporix.sdk</groupId>
                 <artifactId>okta-sdk-okhttp</artifactId>
-                <version>5.0.1-SNAPSHOT</version>
+                <version>5.0.1</version>
             </dependency>
 
             <!-- Other Okta Projects -->
@@ -129,16 +148,16 @@
 
             <!-- ITs -->
             <dependency>
-                <groupId>com.okta.sdk</groupId>
+                <groupId>com.emporix.sdk</groupId>
                 <artifactId>okta-sdk-integration-tests</artifactId>
-                <version>5.0.1-SNAPSHOT</version>
+                <version>5.0.1</version>
             </dependency>
 
             <!-- Examples -->
             <dependency>
-                <groupId>com.okta.sdk</groupId>
+                <groupId>com.emporix.sdk</groupId>
                 <artifactId>okta-sdk-examples-quickstart</artifactId>
-                <version>5.0.1-SNAPSHOT</version>
+                <version>5.0.1</version>
             </dependency>
 
             <!-- Logging -->
@@ -244,6 +263,14 @@
         </dependency>
     </dependencies>
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.kuali.maven.wagons</groupId>
+                <artifactId>maven-s3-wagon</artifactId>
+                <version>${maven-s3-wagon.version}</version>
+            </extension>
+        </extensions>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -314,9 +341,9 @@
                     </configuration>
                     <dependencies>
                         <dependency>
-                            <groupId>com.okta.sdk</groupId>
+                            <groupId>com.emporix.sdk</groupId>
                             <artifactId>okta-api-swagger-templates</artifactId>
-                            <version>5.0.1-SNAPSHOT</version>
+                            <version>5.0.1</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -367,6 +394,12 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <extensions>false</extensions>
+            </plugin>
+
             <plugin>
                 <groupId>org.jasig.maven</groupId>
                 <artifactId>maven-notice-plugin</artifactId>
