@@ -27,7 +27,7 @@ class OAuth2HeaderTokenRequestAuthenticatorConcurrencyTest {
     }
 
     @Test(threadPoolSize = 5, invocationCount = 50)
-    void testAuthenticateRequestWithExpiredInitialToken() {
+    void testAssigningAccessTokenFromRequestHeader() {
         def accessToken = OAuth2AccessToken.of('Bearer ' + UUID.randomUUID().toString())
         clientCredentials.setAccessToken(accessToken)
 
@@ -38,7 +38,7 @@ class OAuth2HeaderTokenRequestAuthenticatorConcurrencyTest {
     }
 
     @Test(threadPoolSize = 5, invocationCount = 50)
-    void testAuthenticateRequestWithExpiredInitialToken1() {
+    void testClearingAssignedAccessToken() {
         def accessToken = OAuth2AccessToken.of('Bearer ' + UUID.randomUUID().toString())
         clientCredentials.setAccessToken(accessToken)
 
