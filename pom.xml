@@ -61,21 +61,14 @@
 
     <distributionManagement>
         <repository>
-            <id>repository.saas-ag.com</id>
-            <url>s3://repository.saas-ag.com/release</url>
+            <id>repository.emporix</id>
+            <url>gcs://tech-artifacts-bucket/release</url>
         </repository>
-        <snapshotRepository>
-            <id>repository.saas-ag.com</id>
-            <url>s3://repository.saas-ag.com/snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <repositories>
         <repository>
             <id>repository.saas-ag.com</id>
             <url>s3://repository.saas-ag.com/release</url>
         </repository>
-    </repositories>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
