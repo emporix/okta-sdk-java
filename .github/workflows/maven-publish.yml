@@ -21,10 +21,7 @@ jobs:
           cache: 'maven'
           
       - name: Maven Test
-        run: mvn -pl '!integration-tests,!examples,!coverage,!examples/quickstart' test -PemporixRepositoryAccessKey=${{ env.S3_USER }} -PemporixRepositorySecretKey=${{ env.S3_PASS }}
-        env:
-          S3_USER: ${{ secrets.S3_USERNAME }}
-          S3_PASS: ${{ secrets.S3_PASSWORD }}
+        run: mvn -pl '!integration-tests,!examples,!coverage,!examples/quickstart' test
           
   publish:
     needs: check
@@ -45,9 +42,9 @@ jobs:
     - name: Publish to Artifact Repository
       run: |
         echo $CREDENTIALS >> tech_bucket_key.json && \
-        mvn -pl '!integration-tests,!examples,!coverage,!examples/quickstart' -DskipTests deploy -DemporixRepositoryAccessKey=${{ env.S3_USER }} -DemporixRepositorySecretKey=${{ env.S3_PASS }}
+        mvn -pl '!integration-tests,!examples,!coverage,!examples/quickstart' -DskipTests deploy
       env:
-        S3_USER: ${{ secrets.S3_USERNAME }}
-        S3_PASS: ${{ secrets.S3_PASSWORD }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
         CREDENTIALS: ${{ secrets.TECH_ARTIFACTS_BUCKET_CREDENTIALS }}
         GOOGLE_APPLICATION_CREDENTIALS: tech_bucket_key.json
