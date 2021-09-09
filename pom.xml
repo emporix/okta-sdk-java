@@ -60,14 +60,16 @@
     </modules>
 
     <distributionManagement>
-        <repository>
-            <id>repository.emporix</id>
-            <url>gcs://tech-artifacts-bucket/release</url>
-        </repository>
-        <repository>
-            <id>repository.saas-ag.com</id>
-            <url>s3://repository.saas-ag.com/release</url>
-        </repository>
+        <repositories>
+            <repository>
+                <id>repository.emporix</id>
+                <url>gcs://tech-artifacts-bucket/release</url>
+            </repository>
+            <repository>
+                <id>repository.saas-ag.com</id>
+                <url>s3://repository.saas-ag.com/release</url>
+            </repository>
+        </repositories>
     </distributionManagement>
 
     <dependencyManagement>
