@@ -42,7 +42,6 @@
         <jjwt.version>0.11.1</jjwt.version>
         <okta.sdk.previousVersion>5.0.0</okta.sdk.previousVersion>
         <okta.commons.version>1.2.6</okta.commons.version>
-        <maven-s3-wagon.version>1.2.1</maven-s3-wagon.version>
 
         <github.slug>okta/okta-sdk-java</github.slug>
     </properties>
@@ -60,16 +59,10 @@
     </modules>
 
     <distributionManagement>
-        <repositories>
-            <repository>
-                <id>repository.emporix</id>
-                <url>gcs://tech-artifacts-bucket/release</url>
-            </repository>
-            <repository>
-                <id>repository.saas-ag.com</id>
-                <url>s3://repository.saas-ag.com/release</url>
-            </repository>
-        </repositories>
+        <repository>
+            <id>repository.emporix</id>
+            <url>gcs://tech-artifacts-bucket/release</url>
+        </repository>
     </distributionManagement>
 
     <dependencyManagement>
@@ -259,14 +252,6 @@
         </dependency>
     </dependencies>
     <build>
-        <extensions>
-            <extension>
-                <groupId>org.kuali.maven.wagons</groupId>
-                <artifactId>maven-s3-wagon</artifactId>
-                <version>${maven-s3-wagon.version}</version>
-            </extension>
-        </extensions>
-
         <pluginManagement>
             <plugins>
                 <plugin>
