@@ -44,7 +44,5 @@ jobs:
         echo $CREDENTIALS >> tech_bucket_key.json && \
         mvn -pl '!integration-tests,!examples,!coverage,!examples/quickstart' -DskipTests deploy
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
         CREDENTIALS: ${{ secrets.TECH_ARTIFACTS_BUCKET_CREDENTIALS }}
         GOOGLE_APPLICATION_CREDENTIALS: tech_bucket_key.json
