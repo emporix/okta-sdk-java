@@ -67,18 +67,18 @@ For Apache Maven:
 
 ``` xml
 <dependency>
-    <groupId>com.okta.sdk</groupId>
+    <groupId>com.emporix.sdk</groupId>
     <artifactId>okta-sdk-api</artifactId>
     <version>${okta.version}</version>
 </dependency>
 <dependency>
-    <groupId>com.okta.sdk</groupId>
+    <groupId>com.emporix.sdk</groupId>
     <artifactId>okta-sdk-impl</artifactId>
     <version>${okta.version}</version>
     <scope>runtime</scope>
 </dependency>
 <dependency>
-    <groupId>com.okta.sdk</groupId>
+    <groupId>com.emporix.sdk</groupId>
     <artifactId>okta-sdk-httpclient</artifactId>
     <version>${okta.version}</version>
     <scope>runtime</scope>

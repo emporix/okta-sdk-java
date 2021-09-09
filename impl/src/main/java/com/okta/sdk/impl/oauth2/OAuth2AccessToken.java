@@ -15,6 +15,8 @@
  */
 package com.okta.sdk.impl.oauth2;
 
+import com.okta.commons.lang.Assert;
+
 import java.time.Duration;
 import java.time.Instant;
 
@@ -30,6 +32,7 @@ public class OAuth2AccessToken {
     public static final String EXPIRES_IN_KEY = "expires_in";
     public static final String ACCESS_TOKEN_KEY = "access_token";
     public static final String SCOPE_KEY = "scope";
+    public static final String TOKEN_TYPE_BEARER = "Bearer ";
 
     /* Token error constants */
     public static final String ERROR_KEY = "error";
@@ -44,6 +47,17 @@ public class OAuth2AccessToken {
     private String scope;
 
     private Instant issuedAt = Instant.now();
+
+    public static OAuth2AccessToken of(String accessToken) {
+        Assert.notNull(accessToken, "accessToken may not be null");
+        Assert.isTrue(accessToken.startsWith(TOKEN_TYPE_BEARER), "accessToken should start with 'Bearer'");
+
+        final OAuth2AccessToken oAuth2AccessToken = new OAuth2AccessToken();
+        oAuth2AccessToken.setAccessToken(accessToken.replace(TOKEN_TYPE_BEARER, ""));
+        oAuth2AccessToken.setTokenType(TOKEN_TYPE_BEARER);
+
+        return oAuth2AccessToken;
+    }
 
     public String getTokenType() {
         return tokenType;
