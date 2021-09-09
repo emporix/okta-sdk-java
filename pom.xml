@@ -61,7 +61,7 @@
     <distributionManagement>
         <repository>
             <id>repository.emporix</id>
-            <url>gcs://tech-artifacts-bucket/release</url>
+            <url>gs://tech-306612#tech-artifacts-bucket/release</url>
         </repository>
     </distributionManagement>
 
