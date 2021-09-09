@@ -19,7 +19,4 @@ jobs:
           cache: 'maven'
 
       - name: Maven Tests
-        run:  mvn -pl '!integration-tests,!examples,!coverage,!examples/quickstart' test -PemporixRepositoryAccessKey=${{ env.S3_USER }} -PemporixRepositorySecretKey=${{ env.S3_PASS }}
-        env:
-          S3_USER: ${{ secrets.S3_USERNAME }}
-          S3_PASS: ${{ secrets.S3_PASSWORD }}
+        run:  mvn -pl '!integration-tests,!examples,!coverage,!examples/quickstart' test
