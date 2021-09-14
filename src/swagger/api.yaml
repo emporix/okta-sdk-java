@@ -7397,6 +7397,37 @@ paths:
       summary: Deactivate Network Zone
       tags:
         - NetworkZone
+  '/oauth2/v1/introspect':
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      descritpion: This endpoint takes an access token, ID token, refresh token, or device secret and returns a boolean that indicates whether it is active.
+      operationId: introspectToken
+      parameters:
+        - in: query
+          name: clientId
+          required: true
+          type: string
+        - in: formData
+          name: token
+          required: true
+          type: string
+        - in: formData
+          name: tokenTypeHint
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Introspect'
+      security:
+        - api_token: []
+      summary: Introspect the token
+      tags:
+        - Introspect
 definitions:
   AcsEndpoint:
     properties:
@@ -9932,6 +9963,17 @@ definitions:
     type: object
     x-okta-tags:
       - Ion
+  IntrospectToken:
+    properties:
+      token:
+        type: string
+      tokenTypeHint:
+        type: string
+      clientId:
+        type: string
+    type: object
+    x-okta-tags:
+      - Introspect
   JsonWebKey:
     properties:
       _links:
@@ -10407,6 +10449,35 @@ definitions:
     type: object
     x-okta-tags:
       - Policy
+  Introspect:
+    properties:
+      active:
+        type: boolean
+      scope:
+        type: string
+      username:
+        type: string
+      exp:
+        type: integer
+        format: int32
+      iat:
+        type: integer
+        format: int32
+      sub:
+        type: string
+      aud:
+        type: string
+      iss:
+        type: string
+      jti:
+        type: string
+      token_type:
+        type: string
+        default: Bearer
+      client_id:
+        type: string
+      uid:
+        type: string
   NetworkZone:
     properties:
       _links:
