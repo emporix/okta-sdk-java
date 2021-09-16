@@ -25,10 +25,7 @@ import com.okta.sdk.impl.resource.MapProperty;
 import com.okta.sdk.impl.resource.Property;
 import com.okta.sdk.impl.resource.StringProperty;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @since 0.5.0
@@ -84,7 +81,8 @@ public class DefaultError extends AbstractResource implements Error {
 
     @Override
     public String getMessage() {
-        return getString(MESSAGE);
+        final String message = getString(MESSAGE);
+        return Objects.nonNull(message) ? message : "";
     }
 
     public DefaultError setMessage(String message) {

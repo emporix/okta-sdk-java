@@ -64,7 +64,7 @@ class ResourceExceptionTest {
 
         assertEquals ex.status, 400
         assertEquals ex.code, "I2000"
-        assertEquals ex.message, 'HTTP 400, Okta I2000 (foo)'
+        assertEquals ex.message, 'foo'
         assertEquals ex.id, null
     }
 
