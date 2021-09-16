@@ -27,6 +27,7 @@ import java.util.Map;
 
 /**
  * A Runtime exception typically thrown when the remote server returns a non 20x response.
+ *
  * @since 0.5.0
  */
 public class ResourceException extends RuntimeException implements Error {
@@ -47,9 +48,8 @@ public class ResourceException extends RuntimeException implements Error {
     private static String buildExceptionMessage(Error error) {
         Assert.notNull(error, "Error argument cannot be null.");
         StringBuilder sb = new StringBuilder();
-        sb.append("HTTP ").append(error.getStatus())
-          .append(", Okta ").append(error.getCode())
-          .append(" (").append(error.getMessage());
+
+        sb.append(error.getMessage());
 
         // if there is only one cause (most common) just include it, otherwise show the cause count
         int causeCount = Collections.size(error.getCauses());
@@ -58,7 +58,6 @@ public class ResourceException extends RuntimeException implements Error {
         } else if (causeCount > 1) {
             sb.append(" - '").append(causeCount).append(" causes'");
         }
-        sb.append(")");
 
         String errorId = error.getId();
         if (Strings.hasText(errorId)) {

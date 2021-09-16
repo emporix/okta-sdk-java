@@ -16,6 +16,7 @@
 package com.okta.sdk.impl.oauth2;
 
 import com.okta.commons.lang.Assert;
+import com.okta.commons.lang.Objects;
 
 import java.time.Duration;
 import java.time.Instant;
